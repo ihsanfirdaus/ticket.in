@@ -1,0 +1,404 @@
+/*
+ * Globals
+ */
+
+@font-face {
+    font-family: "Righteous";
+    src: url("../font/Righteous-Regular.ttf");
+    src: url("../font/Righteous-Regular.ttf") format("ttf"),
+        url("../font/Righteous-Regular.ttf") format("truetype");
+
+    font-display: fallback;
+}
+
+/* Links */
+a,
+a:focus,
+a:hover {
+    color: #fff;
+}
+
+/* Custom default button */
+.btn-secondary,
+.btn-secondary:hover,
+.btn-secondary:focus {
+    color: #333;
+    text-shadow: none; /* Prevent inheritance from `body` */
+    background-color: #fff;
+    border: 0.05rem solid #fff;
+}
+
+/*
+ * Base structure
+ */
+
+html,
+body {
+    /* background-image: url("../img/background-pesawat.png"); */
+    /* background-size: cover;
+    background-position: center;
+    color: #191a1e; */
+    background-color: #007bff;
+    height: 100%;
+}
+
+body {
+    display: -ms-flexbox;
+    display: flex;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+    font-family: "Righteous";
+    letter-spacing: 1.5px;
+}
+
+.cover-heading {
+    margin-bottom: 50px;
+    color: #fff;
+}
+/*
+ * Header
+ */
+.masthead {
+    margin-right: 0;
+}
+
+.masthead-brand {
+    margin-bottom: 0;
+    color: #fff;
+    margin-left: 0;
+}
+
+.nav-masthead .nav-link {
+    padding: 0.25rem 0;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.7);
+    background-color: transparent;
+    border-bottom: 0.25rem solid transparent;
+}
+
+.nav-masthead .nav-link:hover,
+.nav-masthead .nav-link:focus {
+    border-bottom-color: #fff;
+}
+
+.nav-masthead .nav-link + .nav-link {
+    margin-left: 1rem;
+}
+
+.nav-masthead .active {
+    color: #fff;
+    border-bottom-color: #fff;
+}
+
+@media (min-width: 48em) {
+    .masthead-brand {
+        float: left;
+    }
+    .nav-masthead {
+        float: right;
+    }
+}
+
+/*
+ * Cover
+ */
+.cover {
+    padding: 0 1.5rem;
+}
+.cover .btn-lg {
+    padding: 0.75rem 1.25rem;
+    font-weight: 700;
+}
+
+/*
+ * Footer
+ */
+.mastfoot {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.card-custom {
+    overflow: hidden;
+    min-height: 450px;
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+}
+
+.card-custom-img {
+    height: 200px;
+    min-height: 200px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    border-color: inherit;
+}
+
+/* First border-left-width setting is a fallback */
+.card-custom-img::after {
+    position: absolute;
+    content: "";
+    top: 161px;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-top-width: 40px;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 545px;
+    border-left-width: calc(575px - 5vw);
+    border-top-color: transparent;
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: inherit;
+}
+
+.card-custom-avatar img {
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(10, 10, 10, 0.3);
+    position: absolute;
+    top: 100px;
+    left: 1.25rem;
+    width: 100px;
+    height: 100px;
+}
+
+#content-pesawat {
+    color: #fff;
+}
+#content-bus {
+    color: #fff;
+}
+
+#login_page .hero {
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        rgba(0, 0, 0, 0.4),
+        rgba(0, 0, 0, 0.4),
+        url(../img/background-pesawat.png)
+    );
+    background-position: center;
+    background-size: cover;
+    position: absolute;
+}
+
+#login_page .form-box {
+    width: 380px;
+    height: 480px;
+    position: relative;
+    margin: 6% auto;
+    background: #fff;
+    padding: 5px;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.form-box .button-box {
+    width: 220px;
+    margin: 35px auto;
+    position: relative;
+    box-shadow: 0 0 20px 9px #ff61241f;
+    border-radius: 30px;
+}
+
+.button-box #btn {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 110px;
+    height: 100%;
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.button-box .toggle-btn {
+    padding: 10px 30px;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    outline: none;
+    position: relative;
+}
+
+.form-box .input-group {
+    top: 180px;
+    position: absolute;
+    width: 280px;
+    transition: 0.5s;
+}
+
+.input-group .input-field {
+    width: 100%;
+    padding: 10px 0;
+    margin: 5px 0;
+    border-left: 0;
+    border-top: 0;
+    border-right: 0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+
+.input-group .submit-btn {
+    width: 85%;
+    padding: 10px 30px;
+    cursor: pointer;
+    display: block;
+    margin: auto;
+    background: linear-gradient(to right, #ff105f, #ffad06);
+    border: 0;
+    outline: none;
+    border-radius: 30px;
+}
+
+.input-group .check-box {
+    margin: 30px 10px 30px 0;
+}
+
+/* span {
+    color: #777;
+    font-size: 12px;
+    bottom: 68px;
+    position: absolute;
+} */
+
+#masuk {
+    left: 50px;
+}
+#daftar {
+    left: 450px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.single_place {
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    margin-bottom: 30px;
+}
+
+.popular_places_area {
+    margin-top: 50px;
+    margin-bottom: 30px;
+    padding-top: 12px;
+    /* padding-bottom: 150px; */
+    background: #f7fafd;
+    border-radius: 30px;
+}
+@media (max-width: 767px) {
+    .popular_places_area {
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+}
+.popular_places_area .single_place {
+    background: #fff;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    overflow: hidden;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+    margin-bottom: 30px;
+}
+
+.popular_places_area .single_place .thumb {
+    position: relative;
+    /* overflow: hidden; */
+}
+
+.popular_places_area .single_place .thumb img {
+    width: 100%;
+}
+
+.popular_places_area .single_place .thumb .prise {
+    text-decoration: none;
+    position: absolute;
+    background: #1ec6b6;
+    padding: 7px 18px 4px;
+    display: inline-block;
+    top: 20px;
+    left: 20px;
+    -webkit-border-radius: 18px;
+    -moz-border-radius: 18px;
+    border-radius: 18px;
+    color: #fff;
+    font-size: 16px;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.popular_places_area .single_place .place_info {
+    padding: 27px 20px 25px;
+}
+.popular_places_area .single_place .place_info h3 {
+    font-size: 22px;
+    font-weight: 400;
+    color: #040e27;
+    margin-bottom: 0;
+    -webkit-transition: 0.3s;
+    -moz-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+}
+.popular_places_area .single_place .place_info p {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7a838b;
+    margin-top: 2px;
+    margin-bottom: 7px;
+}
+.popular_places_area .single_place .place_info .rating_days span i {
+    font-size: 12px;
+    color: #fdae5c;
+}
+.popular_places_area .single_place .place_info .rating_days span a {
+    font-size: 14px;
+    color: #7a838b;
+    margin-left: 5px;
+}
+.popular_places_area .single_place .place_info .rating_days .days {
+    font-size: 14px;
+    font-weight: 400;
+    color: #7a838b;
+}
+.popular_places_area .single_place .place_info .rating_days .days i {
+    /* margin-right: 8px; */
+}
+.popular_places_area .single_place .place_info .rating_days .days a {
+    font-size: 14px;
+    color: #7a838b;
+}
+.popular_places_area .single_place:hover {
+    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+}
+.popular_places_area .single_place:hover .place_info h3 {
+    color: #ff4a52;
+}
+.popular_places_area .single_place:hover .thumb .prise {
+    background: #ff4a52;
+}
+.popular_places_area .more_place_btn {
+    margin-top: 40px;
+}
+
+.rating_days span i {
+    font-size: 12px;
+    color: #fdae5c;
+}
