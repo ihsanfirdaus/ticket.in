@@ -1,7 +1,8 @@
 @extends('layouts/backend')
-@section('css')
-    
+
+@section('css-plugin')
 @endsection
+
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
@@ -16,10 +17,9 @@
           <table class="table table-bordered" id="list-user" width="100%">
             <thead class="thead-primary">
               <tr>
-                <th>ID</th>
                 <th>Nama</th>
                 <th>Email</th>
-                <th>Action</th>
+                <th></th>
               </tr>
             </thead>
             <tbody> 
@@ -34,6 +34,7 @@
 @section('js-ajax')
     <script src="{{asset('js/backend/user.js')}}"></script>
 @endsection
+
 
 
 

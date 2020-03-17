@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\User; 
+use App\Role;
 
 class RoleUserSeeder extends Seeder
 {
@@ -11,27 +13,21 @@ class RoleUserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'id' => 1,
-            'name' => 'Admin Ticket.in',
-            'email' => 'admin@ticket.in',
-            'is_admin' => 1,
-            'password' => Hash::make('admin123'),
-        ]);
+        $adminRole = new Role();
+        $adminRole->name = "admin";
+        $adminRole->display_name = "Admin";
+        $adminRole->save();
 
-        DB::table('users')->insert([
-            'id' => 2,
-            'name' => 'Owner Ticket.in',
-            'email' => 'owner@ticket.in',
-            'is_admin' => 9,
-            'password' => Hash::make('owner123'),
-        ]);
+        $memberRole = new Role();
+        $memberRole->name = "member";
+        $memberRole->display_name = "Member";
+        $memberRole->save();
 
-        DB::table('users')->insert([
-            'id' => 3,
-            'name' => 'User Faker',
-            'email' => 'userfaker@gmail.com',
-            'password' => Hash::make('user123'),
-        ]);
+        $admin = new User();
+        $admin->name = "Admin Ticket.in";
+        $admin->email = "admin@ticket.in";
+        $admin->password = bcrypt('admin123');
+        $admin->save();
+        $admin->attachRole($adminRole);
     }
 }

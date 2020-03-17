@@ -18,27 +18,52 @@
   <link rel="stylesheet" href="{{asset('icons/icomoon/styles.css')}}">
   <link rel="stylesheet" href="{{asset('SB-Admin/vendor/animate.css/animate.min.css') }}">
   <link rel="stylesheet" href="{{asset('SB-Admin/vendor/sweetalert2/sweetalert2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('SB-Admin/vendor/loading.io/loading-bar.min.css')}}">
   @yield('css-plugin')
 
 <style>
   @font-face {
-    font-family: "Righteous";
-    src: url("../font/Righteous-Regular.ttf");
-    src: url("../font/Righteous-Regular.ttf") format("ttf"),
-        url("../font/Righteous-Regular.ttf") format("truetype");
+		font-family: "Roboto Consended";
+		src: url("../font/RobotoCondensed-Regular.ttf");
+		src: url("../font/RobotoCondensed-Regular.ttf") format("ttf"),
+		url("../font/RobotoCondensed-Regular.ttf") format("truetype");
 
-    font-display: fallback;
-  }
-  body{
-    margin: 0;
-    font-family: "Righteous";
-    letter-spacing: 1.5px;
-  }
+		font-display: fallback;
+	}
+	body{
+		font-family: "Roboto Consended";
+		letter-spacing: .5px;
+	}
   textarea{
      resize: none;
   }
   .sidebar-brand-icon{
     text-transform: none;
+  }
+  
+  .lds-dual-ring {
+    display: inline-block;
+    /* width: 80px;
+    height: 80px; */
+  }
+  .lds-dual-ring:after {
+    content: "";
+    display: block;
+    width: 30px;
+    height: 30px;
+    margin: 8px;
+    border-radius: 50%;
+    border: 6px solid #fff;
+    border-color: #4e73df transparent #4e73df transparent;
+    animation: lds-dual-ring 1.2s linear infinite;
+  }
+  @keyframes lds-dual-ring {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 </style>
 
@@ -53,7 +78,7 @@
       <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{url('/admin/dashboard')}}">
         <div class="sidebar-brand-icon">
           <h4>
-            <i class="icon-airplane3 icon-2x" style="margin-top: -12px;"></i> Ticket.in
+            <i class="icon-airplane3 icon-2x" style="margin-top: -12px;"></i>
           </h4>
         </div>
       </a>
@@ -78,7 +103,7 @@
             <a class="collapse-item" href="{{url('/admin/user')}}">
               <i class="icon-user"></i>&nbsp; User</a>
             <a class="collapse-item" href="{{url('/admin/kendaraan')}}">
-              <i class="icon-car"></i>&nbsp; Kendaraan</a>
+              <i class="icon-airplane2"></i>&nbsp; Kendaraan</a>
             <a class="collapse-item" href="{{url('/admin/jurusan')}}">
               <i class="icon-map4"></i>&nbsp; Jurusan</a>
             <a class="collapse-item" href="{{url('/admin/jadwal')}}"><i class="icon-calendar"></i>&nbsp; Jadwal</a>
@@ -264,7 +289,8 @@
           </ul>
   
         </nav>
-  
+        
+        @include('layouts.flash')
         @yield('content')
 
       </div>
@@ -298,7 +324,7 @@
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
           <a class="btn btn-primary" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Logout</a>
 
-          <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
             @csrf
           </form>
           
@@ -315,6 +341,7 @@
 <script src="{{asset('SB-Admin/vendor/datatables/dataTables.bootstrap4.min.js')}}">
 </script>
 <script src="{{asset('SB-Admin/vendor/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{asset('SB-Admin/vendor/loading.io/loading-bar.min.js')}}"></script>
 @yield('js-plugin')
 @yield('js-ajax')
 

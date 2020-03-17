@@ -7,20 +7,19 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Validator;
-
 class JurusanController extends Controller
 {
     public function index(){
 
         if(request()->ajax()){
-            return datatables()->of(Jurusan::all())
+            return datatables()->of(Jurusan::orderBy("id","desc")->get())
                                ->addColumn('action', function($data){
                                 $btn = '<center>
-                                <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" class="btn btn-sm btn-warning editJurusan" data-toggle="tooltip" title="Edit">
+                                <a href="javascript:void(0)" data-id="'.$data->id.'" class="btn btn-sm btn-warning editJurusan" title="Edit">
                                 <i class="icon-pencil3"></i>
                                 </a> &nbsp;';
                                                
-                                $btn = $btn. '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteJurusan" data-toggle="tooltip" title="Delete">
+                                $btn = $btn. '<a href="javascript:void(0)" data-id="'.$data->id.'" class="btn btn-sm btn-danger deleteJurusan" title="Delete">
                                 <i class="icon-trash-alt"></i>
                                 </a></center>';
                 
@@ -58,6 +57,7 @@ class JurusanController extends Controller
     }
 
     public function destroy($id){
+        
         $jurusan = Jurusan::destroy($id);
 
         return response()->json($jurusan, 200);

@@ -28,28 +28,13 @@ a:hover {
     border: 0.05rem solid #fff;
 }
 
-/*
- * Base structure
- */
-
-html,
-body {
-    /* background-image: url("../img/background-pesawat.png"); */
-    /* background-size: cover;
-    background-position: center;
-    color: #191a1e; */
-    background-color: #007bff;
-    height: 100%;
-}
-
-body {
-    display: -ms-flexbox;
-    display: flex;
+/* body {
     text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
     box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
     font-family: "Righteous";
     letter-spacing: 1.5px;
-}
+    background-color: #007bff;
+} */
 
 .cover-heading {
     margin-bottom: 50px;
@@ -268,137 +253,4 @@ body {
 }
 #daftar {
     left: 450px;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-}
-
-.single_place {
-    background: #fff;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    margin-bottom: 30px;
-}
-
-.popular_places_area {
-    margin-top: 50px;
-    margin-bottom: 30px;
-    padding-top: 12px;
-    /* padding-bottom: 150px; */
-    background: #f7fafd;
-    border-radius: 30px;
-}
-@media (max-width: 767px) {
-    .popular_places_area {
-        padding-top: 60px;
-        padding-bottom: 60px;
-    }
-}
-.popular_places_area .single_place {
-    background: #fff;
-    -webkit-border-radius: 5px;
-    -moz-border-radius: 5px;
-    border-radius: 5px;
-    overflow: hidden;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-    margin-bottom: 30px;
-}
-
-.popular_places_area .single_place .thumb {
-    position: relative;
-    /* overflow: hidden; */
-}
-
-.popular_places_area .single_place .thumb img {
-    width: 100%;
-}
-
-.popular_places_area .single_place .thumb .prise {
-    text-decoration: none;
-    position: absolute;
-    background: #1ec6b6;
-    padding: 7px 18px 4px;
-    display: inline-block;
-    top: 20px;
-    left: 20px;
-    -webkit-border-radius: 18px;
-    -moz-border-radius: 18px;
-    border-radius: 18px;
-    color: #fff;
-    font-size: 16px;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-.popular_places_area .single_place .place_info {
-    padding: 27px 20px 25px;
-}
-.popular_places_area .single_place .place_info h3 {
-    font-size: 22px;
-    font-weight: 400;
-    color: #040e27;
-    margin-bottom: 0;
-    -webkit-transition: 0.3s;
-    -moz-transition: 0.3s;
-    -o-transition: 0.3s;
-    transition: 0.3s;
-}
-.popular_places_area .single_place .place_info p {
-    font-size: 14px;
-    font-weight: 400;
-    color: #7a838b;
-    margin-top: 2px;
-    margin-bottom: 7px;
-}
-.popular_places_area .single_place .place_info .rating_days span i {
-    font-size: 12px;
-    color: #fdae5c;
-}
-.popular_places_area .single_place .place_info .rating_days span a {
-    font-size: 14px;
-    color: #7a838b;
-    margin-left: 5px;
-}
-.popular_places_area .single_place .place_info .rating_days .days {
-    font-size: 14px;
-    font-weight: 400;
-    color: #7a838b;
-}
-.popular_places_area .single_place .place_info .rating_days .days i {
-    /* margin-right: 8px; */
-}
-.popular_places_area .single_place .place_info .rating_days .days a {
-    font-size: 14px;
-    color: #7a838b;
-}
-.popular_places_area .single_place:hover {
-    -webkit-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    -moz-box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
-}
-.popular_places_area .single_place:hover .place_info h3 {
-    color: #ff4a52;
-}
-.popular_places_area .single_place:hover .thumb .prise {
-    background: #ff4a52;
-}
-.popular_places_area .more_place_btn {
-    margin-top: 40px;
-}
-
-.rating_days span i {
-    font-size: 12px;
-    color: #fdae5c;
 }

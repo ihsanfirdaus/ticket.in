@@ -1,0 +1,135 @@
+ACL
+===
+	
+		INSTALLATION.
+
+1. composer require santigarcor/laratrust
+2. Add on > config/app.php > array "providers">
+
+	Laratrust\LaratrustServiceProvider::class,
+
+3. Add on > config/app.php > array "aliases">
+
+	'Laratrust'   => Laratrust\LaratrustFacade::class,
+
+4. Publish all configuration
+	
+	php artisan vendor:publish --all
+
+	
+		CONFIGURATION.
+
+1. Automatic Setup
+	
+	php artisan laratrust:setup
+
+2. Migrate all table
+	
+	php artisan migrate
+
+		
+		USAGE.
+
+1. Add on > app/HTTP/Kernel.php > array "$routeMiddleware"
+
+'role' => \Laratrust\Middleware\LaratrustRole::class,
+'permission' => \Laratrust\Middleware\LaratrustPermission::class,
+'ability' => \Laratrust\Middleware\LaratrustAbility::class,
+
+Don't forget to run -> composer dump-autoload
+
+
+
+				HOW TO REDIRECT AFTER LOGIN BASED ON ROLE (LARATRUST)//
+
+1. Make Seeder RoleUserSeeder
+2. Then, add on RoleUserSeeder 
+
+-> position > before code ( class RoleUserSeeder extends Seeder )
+use App\User; 
+use App\Role;
+
+-> add on method public function run(){
+
+	$adminRole = new Role();
+        $adminRole->name = "admin";
+        $adminRole->display_name = "Admin";
+        $adminRole->save();
+
+        $memberRole = new Role();
+        $memberRole->name = "member";
+        $memberRole->display_name = "Member";
+        $memberRole->save();
+
+        $admin = new User();
+        $admin->name = "Admin";
+        $admin->email = "admin@gmail.com";
+        $admin->password = bcrypt('admin123');
+        $admin->save();
+        $admin->attachRole($adminRole);
+}
+
+3. Open folder app/Http/Controllers/HomeController :
+
+-> position > before code ( class HomeController extends Controller )
+
+use Laratrust\LaratrustFacade as Laratrust;
+
+-> add on method public function index()
+    {
+        if(Laratrust::hasRole('admin')){
+            return redirect('/admin/dashboard'); // url admin or backend page
+        }
+        if(Laratrust::hasRole('member')){
+            return redirect('/');
+        }
+    }
+
+
+
+							HOW TO ONLY ADMIN CAN ACCESS OF PAGE DASHBOARD//
+
+1. Run in terminal :
+
+	php artisan make:middleware AdminMiddleware
+
+2. Open folder app/Http/Kernel.php
+
+	add on array $routeMiddleware :
+
+	'admin' => \App\Http\Middleware\AdminMiddleware::class,
+
+3. And also open folder app/Http/Middleware/AdminController.php
+
+	add code after : 
+	
+	use Closure
+		|
+		v
+	use Laratrust\LaratrustFacade as Laratrust;
+
+4. Next, 
+
+	add on function :
+
+	public function handle($request, Closure $next)
+    	{
+        	if(Laratrust::hasRole('member')){
+            	return redirect('/');
+        	}
+        return $next($request);
+    	}
+
+
+5. Finally , 
+
+	add on web.php 
+
+		Route::group(['prefix' => '/admin' , 'middleware' => 'admin'], function(){
+
+
+		})
+
+6. Done :)
+
+

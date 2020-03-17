@@ -8,32 +8,37 @@
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="keberangkatan">Keberangkatan</label>
-                        <input type="text" name="keberangkatan" class="form-control" required>
+                        <input type="text" name="keberangkatan" id="keberangkatan" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="tujuan">Tujuan</label>
-                        <input type="text" name="tujuan" class="form-control" required>
+                        <input type="text" name="tujuan" id="tujuan" class="form-control">
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="form-group">
                         <label for="waktu">Waktu</label>
-                        <input type="text" name="waktu" id="timepicker" class="form-control" required>
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text" id="basic-addon1"><i class="fa fa-clock"></i></span>
+                            </div>
+                            <input type="text" name="waktu" id="waktu" class="form-control clockpicker" autocomplete="off">
+                        </div>    
                     </div>
                 </div>
             </div>
-            
-        </form>
             <div class="row">
                <div class="col-md-6">           
                    <div class="form-group">
-                       <button id="btn_save" class="btn btn-md btn-primary">Save</button>
+                       <button type="submit" class="btn btn-md btn-primary">Save</button>
                    </div>
                 </div>
             </div>
+        </form>  
     </div>
     </div>
 </div>
+
 

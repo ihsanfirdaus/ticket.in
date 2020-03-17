@@ -1,18 +1,15 @@
 @extends('layouts/backend')
 
 @section('css-plugin')
-  <link rel="stylesheet" href="{{asset('SB-Admin/vendor/timepicker/jquery.timepicker.min.css')}}">
-@endsection
-
-@section('js-plugin')
-  <script src="{{asset('SB-Admin/vendor/timepicker/jquery.timepicker.min.js')}}"></script>
+<link rel="stylesheet" href="{{asset('SB-Admin/vendor/clockpicker/bootstrap-clockpicker.min.css')}}">
+<link rel="stylesheet" href="{{asset('SB-Admin/vendor/clockpicker/jquery-clockpicker.min.css')}}">
 @endsection
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
       <div class="card-header py-3">
           <i class="icon-map4"></i>&nbsp; <b>Data Jurusan</b>
-
+        
         {{-- Button Load Data --}}
         <button id="load-data" class="btn btn-sm btn-success" style="float:right" title="Load Data">
         <i class="icon-sync"></i>
@@ -32,7 +29,6 @@
           <table class="table table-bordered" id="list-jurusan" width="100%">
             <thead class="thead-primary">
               <tr>
-                <th>ID</th>
                 <th>Keberangkatan</th>
                 <th>Tujuan</th>
                 <th>Waktu</th>
@@ -51,6 +47,9 @@
 @section('js-ajax')
     <script src="{{asset('js/backend/jurusan.js')}}"></script>
 @endsection
+
 @section('js-plugin')
-    
+  <script src="{{asset('SB-Admin/vendor/clockpicker/bootstrap-clockpicker.min.js')}}"></script>
+  <script src="{{asset('SB-Admin/vendor/clockpicker/jquery-clockpicker.min.js')}}"></script>
+  <script src="{{asset('SB-Admin/vendor/jquery-mask/jquery.mask.min.js')}}"></script>
 @endsection

@@ -1,18 +1,13 @@
 @extends('layouts/backend')
 
 @section('css-plugin')
- 
-@endsection
-
-@section('js-plugin')
-
 @endsection
 
 @section('content')
 <div class="container-fluid">
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <i class="icon-car"></i>&nbsp; <b>Kendaraan</b>
+          <i class="icon-airplane2"></i>&nbsp; <b>Kendaraan</b>
         
           {{-- Button Load Data --}}
           <button id="load-data" class="btn btn-sm btn-success" style="float:right" title="Load Data">
@@ -33,10 +28,9 @@
           <table class="table table-bordered" id="list-kendaraan" width="100%">
             <thead class="thead-primary">
               <tr>
-                <th>ID</th>
                 <th>Jenis</th>
                 <th>Nama</th>
-                <th>Gambar</th>
+                {{-- <th>Gambar</th> --}}
                 <th>Jumlah Kursi</th>
                 <th></th>
               </tr>
@@ -50,6 +44,7 @@
   </div>
 </div>
 @endsection
+
 @section('js-ajax')
     <script src="{{asset('js/backend/kendaraan.js')}}"></script>
 @endsection

@@ -1,5 +1,11 @@
 $(document).ready(function() {
-    $("#timepicker").timepicker({ timeFormat: "H:i:s" });
+    $(".clockpicker").clockpicker({
+        placement: "bottom",
+        autoclose: true,
+        default: "now"
+    });
+
+    $(".clockpicker").mask("00:00");
 
     // GLOBAL FUNCTION
     $("#btn_add").click(function() {
@@ -30,20 +36,25 @@ $(document).ready(function() {
             .ajax.reload();
     });
 
+    function windowreload() {
+        window.location.reload();
+    }
+
     // SHOW DATA
     $("#list-jurusan").DataTable({
         processing: true,
+        language: {
+            processing: '<div class="lds-dual-ring"></div>'
+        },
         serverSide: true,
         lengthMenu: [
             [5, 10, 25, 50],
             [5, 10, 25, 50, "All"] //Set Menu Page Length
         ],
-        order: ["0", "desc"], //Order data with Descending
         ajax: {
             url: +"admin/jurusan"
         },
         columns: [
-            { data: "id", name: "id" },
             { data: "keberangkatan", name: "keberangkatan" },
             { data: "tujuan", name: "tujuan" },
             { data: "waktu", name: "waktu" },
@@ -57,73 +68,65 @@ $(document).ready(function() {
     });
 
     // ADD
-    $("#btn_save").click(function() {
-        // $.ajaxSetup({
-        //     headers: {
-        //         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
-        //     }
-        // });
+    $("#form-create").on("submit", function(event) {
+        event.preventDefault();
 
-        const swalWithBootstrapButtons = Swal.mixin({
-            buttonsStyling: true,
-            confirmButtonColor: "#4e73df",
-            cancelButtonColor: "#858796"
+        $.ajaxSetup({
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            }
         });
 
-        swalWithBootstrapButtons
-            .fire({
-                title: "Tambah data ?",
-                type: "warning",
-                showCancelButton: true,
-                confirmButtonText: "Ya",
-                cancelButtonText: "Tidak",
-                reverseButtons: true
-            })
-            .then(result => {
-                if (result.value) {
-                    $.ajax({
-                        type: "POST",
-                        url: "jurusan/save",
-                        dataType: "JSON",
-                        data: {
-                            keberangkatan: $(
-                                "#form-create input[name=keberangkatan]"
-                            ).val(),
-                            tujuan: $("#form-create input[name=tujuan]").val(),
-                            waktu: $("#form-create input[name=waktu]").val()
-                        },
-                        beforeSend: function() {
-                            Swal.fire({
-                                title: "Tunggu Sebentar",
-                                timer: 2500,
-                                timerProgressBar: true,
-                                onBeforeOpen: () => {
-                                    Swal.showLoading();
-                                },
-                                onClose: () => {
-                                    clearInterval();
-                                }
-                            });
-                        },
-                        success: function() {
-                            swalWithBootstrapButtons.fire(
-                                "",
-                                "Data berhasil di tambahkan.",
-                                "success"
-                            );
-                            $("#form-create").trigger("reset");
-                        }
-                    });
-                } else if (result.dismiss === Swal.DismissReason.cancel) {
-                    swalWithBootstrapButtons.fire(
-                        "",
-                        "Data batal di tambahkan",
-                        "error"
-                    );
-                }
-            });
-    });
+        $.ajax({
+            type: "POST",
+            url: "jurusan/save",
+            dataType: "JSON",
+            data: {
+                keberangkatan: $(
+                    "#form-create input[name=keberangkatan]"
+                ).val(),
+                tujuan: $("#form-create input[name=tujuan]").val(),
+                waktu: $("#form-create input[name=waktu]").val()
+            },
+            beforeSend: function() {
+                Swal.fire({
+                    title: "Tunggu Sebentar",
+                    timerProgressBar: true,
+                    onBeforeOpen: () => {
+                        Swal.showLoading();
+                    },
+                    onClose: () => {
+                        clearInterval();
+                    }
+                });
+            },
+            success: function() {
+                var keberangkatan = $("#keberangkatan").val();
+                var tujuan = $("#tujuan").val();
+                var waktu = $("#waktu").val();
 
+                if (keberangkatan == "" || tujuan == "" || waktu == "") {
+                    Swal.fire({
+                        position: "top-center",
+                        type: "error",
+                        title: "Ada kolom yang belum di isi",
+                        showConfirmButton: false,
+                        timerProgressBar: true
+                    });
+                } else {
+                    Swal.fire({
+                        position: "top-center",
+                        type: "success",
+                        title: "Data Berhasil ditambahkan",
+                        showConfirmButton: false,
+                        timerProgressBar: true
+                    });
+                    window.location.reload();
+                }
+            }
+        });
+    });
+    // DELETE
     $("body").on("click", ".deleteJurusan", function() {
         var jurusan_id = $(this).data("id");
 
@@ -151,7 +154,6 @@ $(document).ready(function() {
                             Swal.fire({
                                 title: "Tunggu Sebentar ",
                                 timer: 2500,
-                                timerProgressBar: true,
                                 onBeforeOpen: () => {
                                     Swal.showLoading();
                                 },

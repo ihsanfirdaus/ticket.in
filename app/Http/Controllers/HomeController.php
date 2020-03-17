@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Auth;
+use Laratrust\LaratrustFacade as Laratrust;
 class HomeController extends Controller
 {
     /**
@@ -23,10 +24,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // return view('home');
-
-        if(Auth::user()->is_admin == 1) {
+        if(Laratrust::hasRole('admin')){
             return redirect('/admin/dashboard');
+        }
+        if(Laratrust::hasRole('member')){
+            return redirect('/');
         }
     }
 }

@@ -17,6 +17,18 @@ class Kendaraan extends Model
     public function jadwal(){
         return $this->hasMany('App\Jadwal','id_kendaraan');
     }
+    
+    public static function boot(){
+        parent::boot();
+        
+        self::deleting(function ($kendaraan){
+            // Jika data kendaraan pada tabel jadwal masih digunakan,
+            if ($kendaraan->jadwal->count() > 0){
+                //Membatalkan proses penghapusan
+                return false;
+            }
+        });
+    }
 
 }
 

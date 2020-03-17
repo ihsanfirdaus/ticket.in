@@ -16,12 +16,12 @@ class CreateJadwalsTable extends Migration
         Schema::create('jadwals', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->date('tanggal_berangkat');
-            $table->date('tanggal_pulang');
-            $table->unsignedBigInteger('id_pengemudi');
+            $table->date('tanggal_pulang')->nullable();
             $table->unsignedBigInteger('id_kendaraan');
             $table->unsignedBigInteger('id_jurusan');
             $table->unsignedBigInteger('id_kategori');
-            $table->integer('harga_tiket');
+            $table->string('harga_tiket');
+            $table->string('tipe_tiket')->nullable();
             $table->timestamps();
         });
     }

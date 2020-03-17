@@ -17,7 +17,7 @@ class UserController extends Controller
     public function index()
     {
         if(request()->ajax()){
-            return datatables()->of(User::where('is_admin','=','0')->get())
+            return datatables()->of(User::all())
                                ->addColumn('action', function($data){
                                 $button = '<center>
                                 <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" class="deleteUser">
