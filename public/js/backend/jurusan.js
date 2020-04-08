@@ -51,12 +51,15 @@ $(document).ready(function() {
             [5, 10, 25, 50],
             [5, 10, 25, 50, "All"] //Set Menu Page Length
         ],
+        order: ["0", "desc"], //Order data with Descending
         ajax: {
             url: +"admin/jurusan"
         },
         columns: [
             { data: "keberangkatan", name: "keberangkatan" },
-            { data: "tujuan", name: "tujuan" },
+            { data: "bandara_k", name: "bandara_k"},
+            { data: "tujuan", name: "tujuan"},
+            { data: "bandara_t", name: "bandara_t"},
             { data: "waktu", name: "waktu" },
             {
                 data: "action",
@@ -82,11 +85,14 @@ $(document).ready(function() {
             url: "jurusan/save",
             dataType: "JSON",
             data: {
-                keberangkatan: $(
-                    "#form-create input[name=keberangkatan]"
-                ).val(),
+                bandara_k : $("#form-create input[name=bandara_k]").val(),
+                keberangkatan: $("#form-create input[name=keberangkatan]").val(),
+                kode_penerbangan_k: $("#form-create input[name=kode_penerbangan_k]").val(),
+                waktu_k: $("#form-create input[name=waktu_k]").val(),
+                bandara_t : $("#form-create input[name=bandara_t]").val(),
                 tujuan: $("#form-create input[name=tujuan]").val(),
-                waktu: $("#form-create input[name=waktu]").val()
+                kode_penerbangan_t: $("#form-create input[name=kode_penerbangan_t]").val(),
+                waktu_t: $("#form-create input[name=waktu_t]").val()
             },
             beforeSend: function() {
                 Swal.fire({

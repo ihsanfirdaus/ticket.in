@@ -1,5 +1,9 @@
 @extends('layouts/frontend')
 
+@section('main-css')
+    <link rel="stylesheet" href="{{asset('Front-end/css/animate.css/animate.min.css')}}">   
+@endsection
+
 @section('content')
 <section class="booking-area" id="booking">
 	<div class="container">
@@ -16,58 +20,46 @@
                         <!-- Tab panes -->
                 <div class="tab-content">
                     <div role="tabpanel" class="tab-pane fade in active" id="pesawat">
-						<form class="booking-form" id="pesan_pesawat" data-toggle="validator" role="form">
+						<form action="{{ route('cari_tiket') }}" class="booking-form" id="pesan_pesawat" method="GET">
 							<div class="row justify-content-center">
 								<div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="pulang_pergi" name="tipe_tiket" class="custom-control-input" checked="checked">
+                                    <input type="radio" id="pulang_pergi" name="tipe_tiket" class="custom-control-input" value="Pulang Pergi" checked="checked">
                                     <label class="custom-control-label" for="pulang_pergi">Pulang Pergi</label>
                                 </div>
                                 <div class="custom-control custom-radio custom-control-inline">
-                                    <input type="radio" id="sekali_jalan" name="tipe_tiket" class="custom-control-input">
+                                    <input type="radio" id="sekali_jalan" name="tipe_tiket" class="custom-control-input" value="Sekali Jalan">
                                     <label class="custom-control-label" for="sekali_jalan">Sekali Jalan</label>
                                 </div>    
 							</div>
 							<hr>
 							<div class="row justify-content-center">
 								<div class="col-md-5">
-                                    <label for="Departure">Keberangkatan</label>
+                                    <label for="">Keberangkatan</label>
 									<div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                             <i class="fa fa-plane-departure" style="color:#007bff"></i>
                                             </span>
                                         </div>
-                                        <select name="keberangkatan" id="keberangkatan" class="single-in form-control" placeholder="Cari">
-                                            <optgroup label="Jawa">
-                                                <option value="BDG">Bandung</option>
-                                                <option value="SBY">Surabaya</option>
-                                            </optgroup>
-                                            <optgroup label="Sumatera">
-                                                <option value="MD">Medan</option>
-                                                <option value="LP">Lampung</option>
-                                                <option value="AC">Aceh</option>
-                                            </optgroup>
+                                        <select name="keberangkatan" class="single-in form-control">
+                                           @foreach ($keberangkatan as $item)
+                                           <option value="{{$item->keberangkatan}}">{{$item->keberangkatan}} - {{$item->bandara_k}}</option>
+                                           @endforeach
                                         </select>
                                     </div>
 								</div>
 								<div class="col-md-5">
-                                    <label for="Arrival">Tujuan</label>
+                                    <label for="">Tujuan</label>
 									<div class="input-group">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text">
                                             <i class="fa fa-plane-arrival" style="color:#007bff"></i>
                                             </span>
                                         </div>
-                                        <select name="tujuan" id="tujuan" class="single-in form-control">
-                                            <optgroup label="Jawa">
-                                                {{-- <option value="BDG">Bandung</option> --}}
-                                                <option value="SBY">Surabaya</option>
-                                            </optgroup>
-                                            <optgroup label="Sumatera">
-                                                <option value="MD">Medan</option>
-                                                <option value="LP">Lampung</option>
-                                                <option value="AC">Aceh</option>
-                                            </optgroup>
+                                        <select name="tujuan" class="single-in form-control">
+                                            @foreach ($tujuan as $item)
+                                            <option value="{{$item->tujuan}}">{{$item->tujuan}} - {{$item->bandara_t}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
 								</div>
@@ -86,8 +78,7 @@
                                         <input type="text" class="form-control endDateFlight" name="tanggal_pulang" id="tanggal_pulang" autocomplete="off" data-provide="datepicker" placeholder="dd-mm-yyyy" required>
                                     </div>
                                 </div>
-                            </div>
-                            <br>	
+                            </div>	
                             <div class="row justify-content-center">
                                 <div class="col-md-4">
                                     <label for="">Kategori</label>
@@ -95,38 +86,16 @@
                                         <div class="input-group-prepend">
                                             <span class="input-group-text"><i class="fa fa-ticket-alt" style="color:#007bff"></i></span>
                                         </div>
-                                    <select name="id_kategori" id="id_kategori" class="single-in form-control">
+                                    <select name="kategori_tiket" class="single-in form-control">
                                         @foreach ($kategori as $item)
-                                    <option value="{{$item->id}}">{{$item->nama_kategori}}</option>
+                                    <option value="{{$item->nama_kategori}}">{{$item->nama_kategori}}</option>
                                         @endforeach
                                     </select>
                                     </div>
                                 </div>
-                                <div class="col-md-5">
-                                    <div class="card">
-                                        <div class="card-body">
-                                        <p style="text-align:center">Penumpang</p>
-                                        <hr>
-                                        <div class="row justify-content-center">
-                                            <div class="custom-control custom-checkbox custom-control-inline">
-                                                <input type="checkbox" id="without_child" name="opsi_anak" class="custom-control-input">
-                                                <label class="custom-control-label" for="without_child">Tidak ada anak</label>
-                                            </div>
-                                        </div>
-                                        <hr>
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="fa fa-users" style="color:#007bff"></i></span>
-                                        </div>
-                                        <input type="number" title="Umur 18 Tahun >" name="dewasa" id="dewasa" class="single-in form-control" placeholder="Dewasa" autocomplete="off" required>
-                                        <input type="number" title="Umur 2 - 17 Tahun" name="anak" id="anak" class="single-in form-control" placeholder="Anak" autocomplete="off">
-                                    </div>
-                                        </div>
-                                    </div>
-								</div>
                             </div>
 							<div class="col-lg-12 d-flex justify-content-end">
-								<a href="{{url('info-tiket-pesawat')}}"><button type="button" class="primary-btn mt-20">Cari Tiket<span class="lnr lnr-arrow-right"></span></button></a>
+								<a href="{{url('info-tiket-pesawat')}}"><button type="submit" class="primary-btn mt-20">Cari Tiket<span class="lnr lnr-arrow-right"></span></button></a>
 							</div>		    	
                         </form>
                     </div>
@@ -204,9 +173,3 @@
 	</div>
 </section>
 @endsection
-@push('main-js')
-    <script>
-        
-
-    </script>
-@endpush

@@ -26,7 +26,9 @@ class RoleUserSeeder extends Seeder
         $admin = new User();
         $admin->name = "Admin Ticket.in";
         $admin->email = "admin@ticket.in";
+        $admin->phone_number = "";
         $admin->password = bcrypt('admin123');
+        $admin->is_admin = 1;
         $admin->save();
         $admin->attachRole($adminRole);
     }

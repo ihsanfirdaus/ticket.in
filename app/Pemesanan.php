@@ -6,7 +6,16 @@ use Illuminate\Database\Eloquent\Model;
 
 class Pemesanan extends Model
 {
-    protected $fillable = ['no_pemesanan','id_jadwal','id_user','jumlah_penumpang','harga_total','tanggal_pemesanan','status_pemesanan','status_bayar'];
+    protected $fillable = ['no_pemesanan',
+                        'id_jadwal',
+                        'id_user',
+                        'nama_pemesan',
+                        'no_hp',
+                        'jumlah_penumpang_dewasa',
+                        'jumlah_penumpang_anak',
+                        'harga_total',
+                        'tanggal_pemesanan',
+                        'status_pembayaran'];
 
     public $timestamps = true;
 

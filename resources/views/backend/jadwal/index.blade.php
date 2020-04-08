@@ -34,7 +34,8 @@
           <table class="table table-bordered" id="list-jadwal" width="100%">
             <thead class="thead-primary">
               <tr>
-                <th width="93px">Tanggal Berangkat</th>
+                <th style="text-align:center">Maskapai</th>
+                <th width="90px">Tanggal Berangkat</th>
                 <th width="90px">Tanggal Pulang</th>
                 <th style="text-align:center">Jurusan</th>
                 <th>Harga Tiket</th>
@@ -58,3 +59,4 @@
 @section('js-ajax')
     <script src="{{asset('js/backend/jadwal.js')}}"></script>
 @endsection
+

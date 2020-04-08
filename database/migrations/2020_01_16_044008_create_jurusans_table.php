@@ -15,9 +15,14 @@ class CreateJurusansTable extends Migration
     {
         Schema::create('jurusans', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('bandara_k');
             $table->string('keberangkatan');
+            $table->string('kode_penerbangan_k');
+            $table->time('waktu_k');
+            $table->string('bandara_t');
             $table->string('tujuan');
-            $table->time('waktu');
+            $table->string('kode_penerbangan_t');
+            $table->time('waktu_t');
             $table->timestamps();
         });
     }

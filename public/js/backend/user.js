@@ -19,6 +19,7 @@ $(document).ready(function() {
         columns: [
             { data: "name", name: "name" },
             { data: "email", name: "email" },
+            { data: "phone_number", name: "phone_number"},
             {
                 data: "action",
                 name: "action",

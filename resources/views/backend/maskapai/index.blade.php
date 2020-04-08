@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="card shadow mb-4">
       <div class="card-header py-3">
-          <i class="icon-airplane2"></i>&nbsp; <b>Kendaraan</b>
+          <i class="icon-airplane2"></i>&nbsp; <b>Maskapai</b>
         
           {{-- Button Load Data --}}
           <button id="load-data" class="btn btn-sm btn-success" style="float:right" title="Load Data">
@@ -23,14 +23,14 @@
           </button>
       </div>
 
-      <div class="card-body" id="table_kendaraan">
+      <div class="card-body" id="table_maskapai">
         <div class="table-responsive">
-          <table class="table table-bordered" id="list-kendaraan" width="100%">
+          <table class="table table-bordered" id="list-maskapai" width="100%">
             <thead class="thead-primary">
               <tr>
-                <th>Jenis</th>
-                <th>Nama</th>
-                {{-- <th>Gambar</th> --}}
+                <th>Logo Maskapai</th>
+                <th>Jenis Kendaraan</th>
+                <th>Nama Maskapai</th>
                 <th>Jumlah Kursi</th>
                 <th></th>
               </tr>
@@ -40,11 +40,11 @@
           </table>
         </div>
     </div>
-     @include('backend/kendaraan/create')
+     @include('backend/maskapai/create')
   </div>
 </div>
 @endsection
 
 @section('js-ajax')
-    <script src="{{asset('js/backend/kendaraan.js')}}"></script>
+    <script src="{{asset('js/backend/maskapai.js')}}"></script>
 @endsection

@@ -1,6 +1,8 @@
 @extends('layouts/frontend')
 
-
+@section('main-css')
+<link rel="stylesheet" href="{{ asset('Front-end/file-upload-with-preview/dist/file-upload-with-preview.min.css') }}">
+@endsection
 
 @section('content')
     <br>
@@ -65,8 +67,17 @@
                     </div>
                     <div class="card-body">
                         <form action="#" method="post" enctype="multipart/form-data">
-                            <div class="from-group">
-                                <input type="file" name="bukti_pembayaran" id="" class="single-in form-control">
+                            <div class="form-group">
+                                <div class="custom-file-container" data-upload-id="myUploader">
+                                    <label>Bukti Pembayaran <a href="javascript:void(0)" class="custom-file-container__image-clear" title="Clear Image">x</a></label>
+                    
+                                    <label class="custom-file-container__custom-file" >
+                                        <input type="hidden" name="MAX_FILE_SIZE" value="10485760" />
+                                        <input type="file" name="bukti_pembayaran" class="custom-file-container__custom-file__custom-file-input" accept="*">
+                                        <span class="custom-file-container__custom-file__custom-file-control"></span>
+                                    </label>
+                                    <div class="custom-file-container__image-preview"></div>
+                                </div>
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Kirim <i class="fa fa-arrow-right"></i></button>
@@ -80,7 +91,20 @@
 @endsection
 
 @section('main-js')
-    <script>
-        
-    </script>
+<script src="{{ asset('Front-end/file-upload-with-preview/dist/file-upload-with-preview.min.js') }}"></script>
 @endsection
+
+@push('play-js')
+    <script>
+        var myUpload = new FileUploadWithPreview('myUploader', {
+        showDeleteButtonOnImages: true,
+        text: {
+            chooseFile: 'Pilih Gambar ...',
+            browse: 'Cari',
+            selectedCount: 'files selected'
+        },
+        maxFileCount: 0,
+        presetFiles: []
+    });
+    </script>
+@endpush

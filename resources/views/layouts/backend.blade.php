@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="{{asset('SB-Admin/vendor/animate.css/animate.min.css') }}">
   <link rel="stylesheet" href="{{asset('SB-Admin/vendor/sweetalert2/sweetalert2.min.css')}}">
   <link rel="stylesheet" href="{{asset('SB-Admin/vendor/loading.io/loading-bar.min.css')}}">
+  <link rel="stylesheet" href="{{ asset('Front-end/file-upload-with-preview/dist/file-upload-with-preview.min.css') }}">
   @yield('css-plugin')
 
 <style>
@@ -102,8 +103,8 @@
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="{{url('/admin/user')}}">
               <i class="icon-user"></i>&nbsp; User</a>
-            <a class="collapse-item" href="{{url('/admin/kendaraan')}}">
-              <i class="icon-airplane2"></i>&nbsp; Kendaraan</a>
+            <a class="collapse-item" href="{{url('/admin/maskapai')}}">
+              <i class="icon-airplane2"></i>&nbsp; Maskapai</a>
             <a class="collapse-item" href="{{url('/admin/jurusan')}}">
               <i class="icon-map4"></i>&nbsp; Jurusan</a>
             <a class="collapse-item" href="{{url('/admin/jadwal')}}"><i class="icon-calendar"></i>&nbsp; Jadwal</a>
@@ -342,6 +343,7 @@
 </script>
 <script src="{{asset('SB-Admin/vendor/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{asset('SB-Admin/vendor/loading.io/loading-bar.min.js')}}"></script>
+<script src="{{ asset('Front-end/file-upload-with-preview/dist/file-upload-with-preview.min.js') }}"></script>
 @yield('js-plugin')
 @yield('js-ajax')
 

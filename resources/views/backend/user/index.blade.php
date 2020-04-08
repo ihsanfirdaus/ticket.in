@@ -19,6 +19,7 @@
               <tr>
                 <th>Nama</th>
                 <th>Email</th>
+                <th>Phone Number</th>
                 <th></th>
               </tr>
             </thead>

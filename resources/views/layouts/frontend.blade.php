@@ -23,19 +23,21 @@
 			<link rel="stylesheet" href="{{asset('icons/icomoon/styles.css')}}">
 			<link rel="stylesheet" href="{{asset('Front-end/css/magnific-popup.css')}}">
 			<link rel="stylesheet" href="{{asset('Front-end/css/bootstrap.min.css')}}">
-			<link rel="stylesheet" href="{{asset('Front-end/css/animate.css/animate.min.css')}}">
 			<link rel="stylesheet" href="{{asset('Front-end/select2/dist/css/select2.min.css')}}">
 			<link rel="stylesheet" href="{{asset('Front-end/select2/dist/css/select2-bootstrap.min.css')}}">
 			<link rel="stylesheet" href="{{asset('SB-Admin/vendor/daterangepicker/daterangepicker.min.css')}}">
 			<link rel="stylesheet" href="{{asset('Front-end/css/main.css')}}">
 			<style>
-				@font-face{font-family:"Roboto Consended";
-				src:url(../font/RobotoCondensed-Regular.ttf);
-				src:url(../font/RobotoCondensed-Regular.ttf) format("ttf"),
-				url(../font/RobotoCondensed-Regular.ttf) format("truetype");
-				font-display:fallback}
-				body{font-family:"Roboto Consended";letter-spacing:.5px}
-
+				  @font-face{
+					font-family:"Roboto Consended";
+					src:url(../font/RobotoCondensed-Regular.ttf);
+					src:url(../font/RobotoCondensed-Regular.ttf) format("ttf");
+					src:url(../font/RobotoCondensed-Regular.ttf) format("truetype");
+					font-display: fallback;
+					}
+					body{
+						font-family:"Roboto Consended";letter-spacing:.5px
+					}
 				.img-center{
 					display: block;
 					margin-left: auto;
@@ -124,7 +126,8 @@
 			<script>  
 				$.fn.select2.defaults.set( "theme", "bootstrap" );
 			</script>
+			@yield('main-js')
 			<script src="{{asset('Front-end/js/main.js')}}"></script>
-			@stack('main-js')
+			@stack('play-js')
 		</body>
 	</html>

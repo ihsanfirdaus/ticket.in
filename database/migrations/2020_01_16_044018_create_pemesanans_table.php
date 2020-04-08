@@ -15,11 +15,13 @@ class CreatePemesanansTable extends Migration
     {
         Schema::create('pemesanans', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('no_pemesanan');
+            $table->string('no_pemesanan')->unique();
             $table->unsignedBigInteger('id_jadwal');
             $table->unsignedBigInteger('id_user');
-            $table->integer('jumlah_penumpang');
+            $table->integer('jumlah_penumpang_dewasa');
+            $table->integer('jumlah_penumpang_anak');
             $table->integer('harga_total');
+            $table->string('status_pembayaran')->default("Belum dibayar");
             $table->date('tanggal_pemesanan');      
             $table->timestamps();
         });
@@ -32,6 +34,6 @@ class CreatePemesanansTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bookings');
+        Schema::dropIfExists('pemesanans');
     }
 }

@@ -20,6 +20,13 @@
                 </div>
                 <hr>
                 <div class="row justify-content-center">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" name="kode_jadwal" value="{{Str::random(10)}}">
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
                     <div class="col-md-4 form-group">
                         <label for="">Tanggal Berangkat</label>
                         <div class="input-group mb-3">
@@ -42,20 +49,20 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-md-4 form-group">
-                        <label for="">Kendaraan</label>
-                        <select name="id_kendaraan" id="id_kendaraan" class="form-control">
-                            @foreach ($kendaraan as $item)
-                        <option value="{{$item->id}}">{{$item->nama_kendaraan}}</option>
+                    <div class="col-md-3 form-group">
+                        <label for="">Maskapai</label>
+                        <select name="id_maskapai" id="id_maskapai" class="form-control">
+                            @foreach ($maskapai as $item)
+                        <option value="{{$item->id}}">{{$item->nama_maskapai}}</option>
                             @endforeach
                         </select>
                     </div>
-                    <div class="col-md-4 form-group">
+                    <div class="col-md-5 form-group">
                         <label for="">Jurusan</label>
                         <select name="id_jurusan" id="id_jurusan" class="form-control">
                             @foreach ($jurusan as $item)
                         <option value="{{$item->id}}">
-                {{$item->keberangkatan}} - {{$item->tujuan}} ({{$item->waktu}})</option>
+                {{$item->keberangkatan}} - {{$item->tujuan}} ({{$item->waktu_k}} - {{$item->waktu_t}})</option>
                             @endforeach
                         </select>
                     </div>

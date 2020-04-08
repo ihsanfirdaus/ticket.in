@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     $("#btn_add").click(function() {
         $("#card_add").show();
-        $("#table_kendaraan").hide();
+        $("#table_maskapai").hide();
         $("#btn_cancel").show();
         $("#btn_add").hide();
         $("#load-data").hide();
@@ -12,13 +12,13 @@ $(document).ready(function() {
 
     $("#btn_cancel").click(function() {
         $("#card_add").hide();
-        $("#table_kendaraan").show();
+        $("#table_maskapai").show();
         $("#btn_cancel").hide();
         $("#btn_add").show();
         $("#load-data").show();
     });
 
-    const element1 = document.querySelector("#list-kendaraan");
+    const element1 = document.querySelector("#list-maskapai");
     element1.classList.add("animated", "fadeIn");
 
     const element2 = document.querySelector("#form-create");
@@ -26,12 +26,12 @@ $(document).ready(function() {
 
     // LOAD DATA WITHOUT RELOAD THE PAGE
     $("#load-data").click(function() {
-        $("#list-kendaraan")
+        $("#list-maskapai")
             .DataTable()
             .ajax.reload();
     });
     // SHOW DATA
-    $("#list-kendaraan").DataTable({
+    $("#list-maskapai").DataTable({
         processing: true,
         language: {
             processing: '<div class="lds-dual-ring"></div>'
@@ -43,12 +43,12 @@ $(document).ready(function() {
         ],
         order: ["0", "desc"], //Order data with Descending
         ajax: {
-            url: +"admin/kendaraan"
+            url: +"admin/maskapai"
         },
         columns: [
+            { data: "gambar_maskapai", name: "gambar_maskapai" },
             { data: "jenis_k.jenis_kendaraan", name: "id_jenis" },
-            { data: "nama_kendaraan", name: "nama_kendaraan" },
-            // { data: "gambar_kendaraan", name: "gambar_kendaraan" },
+            { data: "nama_maskapai", name: "nama_maskapai" },
             { data: "jumlah_kursi", name: "jumlah_kursi" },
             {
                 data: "action",
@@ -59,44 +59,6 @@ $(document).ready(function() {
         ]
     });
 
-    // UPLOAD WITH PREVIEW IMAGE
-    // $(document).on("change", ".btn-file :file", function() {
-    //     var input = $(this),
-    //         label = input
-    //             .val()
-    //             .replace(/\\/g, "/")
-    //             .replace(/.*\//, "");
-    //     input.trigger("fileselect", [label]);
-    // });
-
-    // $(".btn-file :file").on("fileselect", function(event, label) {
-    //     var input = $(this)
-    //             .parents(".input-group")
-    //             .find(":hidden"),
-    //         log = label;
-
-    //     if (input.length) {
-    //         input.val(log);
-    //     } else {
-    //         if (log) alert(log);
-    //     }
-    // });
-
-    // function readURL(input) {
-    //     if (input.files && input.files[0]) {
-    //         var reader = new FileReader();
-
-    //         reader.onload = function(e) {
-    //             $("#img-upload").attr("src", e.target.result);
-    //         };
-
-    //         reader.readAsDataURL(input.files[0]);
-    //     }
-    // }
-
-    // $(".imgInp").change(function() {
-    //     readURL(this);
-    // });
 
     // ADD
     $("#form-create").on("submit", function(event) {
@@ -109,8 +71,9 @@ $(document).ready(function() {
         });
 
         $.ajax({
-            type: "POST",
-            url: "kendaraan/save", // URL
+            url: "maskapai/save", // URL
+            method: "POST",
+            dataType: "JSON",
             cache: false,
             contentType: false,
             processData: false,
@@ -129,15 +92,15 @@ $(document).ready(function() {
             },
             success: function() {
                 var id_jenis = $("#id_jenis").val();
-                var nama_kendaraan = $("#nama_kendaraan").val();
+                var nama_maskapai = $("#nama_maskapai").val();
                 var jumlah_kursi = $("#jumlah_kursi").val();
-                var gambar_kendaraan = $("#gambar_kendaraan").val();
+                var gambar_maskapai = $("#gambar_maskapai").val();
 
                 if (
                     id_jenis == "" ||
-                    nama_kendaraan == "" ||
+                    nama_maskapai == "" ||
                     jumlah_kursi == "" ||
-                    gambar_kendaraan == ""
+                    gambar_maskapai == ""
                 ) {
                     Swal.fire({
                         position: "top-center",
@@ -147,8 +110,7 @@ $(document).ready(function() {
                         timerProgressBar: true
                     });
                 } else {
-                    $("#form-create").trigger("reset");
-                    $("#img-upload").hide();
+                    $("#form-create")[0].reset();
                     Swal.fire({
                         position: "top-center",
                         type: "success",
@@ -162,8 +124,8 @@ $(document).ready(function() {
         });
     });
     // DELETE
-    $("body").on("click", ".deleteKendaraan", function() {
-        var kendaraan_id = $(this).data("id");
+    $("body").on("click", ".deleteMaskapai", function() {
+        var maskapai_id = $(this).data("id");
 
         const swalWithBootstrapButtons = Swal.mixin({
             buttonsStyling: true,
@@ -184,7 +146,7 @@ $(document).ready(function() {
                 if (result.value) {
                     $.ajax({
                         type: "GET",
-                        url: "kendaraan/delete" + "/" + kendaraan_id,
+                        url: "maskapai/delete" + "/" + maskapai_id,
                         beforeSend: function() {
                             Swal.fire({
                                 title: "Tunggu Sebentar ",
@@ -203,7 +165,7 @@ $(document).ready(function() {
                                 "Data berhasil di hapus.",
                                 "success"
                             );
-                            $("#list-kendaraan")
+                            $("#list-maskapai")
                                 .DataTable()
                                 .ajax.reload();
                         }
@@ -218,3 +180,14 @@ $(document).ready(function() {
             });
     });
 }); // END
+
+var myUpload = new FileUploadWithPreview('myUploader', {
+    showDeleteButtonOnImages: true,
+    text: {
+        chooseFile: 'Pilih Gambar ...',
+        browse: 'Cari',
+        selectedCount: 'files selected'
+    },
+    maxFileCount: 0,
+    presetFiles: []
+});

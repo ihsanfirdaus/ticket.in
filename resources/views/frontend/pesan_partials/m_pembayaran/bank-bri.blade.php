@@ -3,10 +3,6 @@
         <div class="card-body">
             <p>Anda memilih metode pembayaran : <b>Bank BRI</b></p>
             <img src="{{asset('Front-end/img/Metode Pembayaran/bank-bri.jpg')}}" class="img-center" alt="" width="50%"><br>
-            <div class="card" style="height:75px">
-                <div class="card-body"><p style="text-align:center;font-size:22px;font-weight:600;background-color: #dedede">223190876243513</p></div>
-            </div>
-            <br>
             <p>Pemesanan yang dapat dibayar melalui metode ini adalah tiket pesawat dan juga tiket bus yang dibeli paling lambat sebelum keberangkatan / check in.</p>
         </div>
     </div>
@@ -35,20 +31,6 @@
                             <p style="float:left">Total : </p><span style="float:right;font-weight:600">Rp 500.000</span>
                         </ul>
                 </div>
-            </div><hr>
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="">Atas Nama</label>
-                    <input type="text" name="" class="single-in form-control" id="">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="">No. Rekening</label>
-                    <input type="text" name="" class="single-in form-control" id="">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="">Masukan Nominal</label>
-                    <input type="text" name="" class="single-in form-control" id="">
-                </div>
             </div>
         </div>
     </div>
@@ -59,7 +41,7 @@
                     <p>Dengan menekan tombol " Bayar ", anda telah setuju dengan <a href="">Syarat & Ketentuan</a> serta <a href="">Kebijakan Privasi Ticket.in</a></p>
                 </div>
                 <div class="col-md-4">
-                    <button type="button" class="btn btn-info" style="float:right">Bayar</button>
+                    <a href="{{url('pesan-tiket/konfirmasi-pembayaran-bri')}}"><button type="button" class="btn btn-info" style="float:right">Bayar</button></a>
                 </div>
             </div>
         </div>

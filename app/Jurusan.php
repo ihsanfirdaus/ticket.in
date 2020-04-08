@@ -3,24 +3,21 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Session;
+
 class Jurusan extends Model
 {
-    protected $fillable = ['keberangkatan','tujuan','waktu'];
+    protected $fillable = ['bandara_k',
+                        'keberangkatan',
+                        'kode_penerbangan_k',
+                        'waktu_k',
+                        'bandara_t',
+                        'tujuan',
+                        'kode_penerbangan_t',
+                        'waktu_t'];
     
     public function jadwal(){
         return $this->hasMany('App\Jadwal','id_jurusan');
     }
     
-    public static function boot(){
-        parent::boot();
-        
-        self::deleting(function ($jurusan){
-            // Jika data jurusan pada tabel jadwal masih digunakan,
-            if ($jurusan->jadwal->count() > 0){
-                //Membatalkan proses penghapusan
-                return false;
-            }
-        });
-    }
 }
+

@@ -9,28 +9,23 @@ use Yajra\Datatables\Datatables;
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     public function index()
     {
         if(request()->ajax()){
-            return datatables()->of(User::all())
-                               ->addColumn('action', function($data){
-                                $button = '<center>
-                                <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$data->id.'" class="deleteUser">
-                                <button class="btn btn-sm btn-danger">
-                                 <i class="icon-trash-alt" data-toggle="tooltip" title="Delete"></i>
-                                </button>
-                                </a>
-                                </center>';
+            return datatables()->of(User::where('is_admin','=','0')->get())
+            ->addColumn('action', function($data){
+            $btn = '<center>
+                    <a href="javascript:void(0)"  data-id="'.$data->id.'" class="deleteUser">
+                    <button class="btn btn-sm btn-danger">
+                        <i class="icon-trash-alt" title="Delete"></i>
+                    </button>
+                    </a>
+                    </center>';
 
-                                return $button;
-                               })
-                               ->rawColumns(['action'])
-                               ->make(true);
+            return $btn;
+            })
+            ->rawColumns(['action'])
+            ->make(true);
         }
         
         return view('backend/user/index');

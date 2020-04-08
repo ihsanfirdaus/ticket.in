@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password'
+        'name', 'email', 'password','phone_number','is_admin'
     ];
 
     /**
@@ -39,7 +39,7 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function booking(){
-        return $this->hasMany('App\Booking','id_user');
+    public function pemesanan(){
+        return $this->hasMany('App\Pemesanan','id_user');
     }
 }

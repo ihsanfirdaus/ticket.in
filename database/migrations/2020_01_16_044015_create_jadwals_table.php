@@ -15,9 +15,10 @@ class CreateJadwalsTable extends Migration
     {
         Schema::create('jadwals', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('kode_jadwal');
             $table->date('tanggal_berangkat');
             $table->date('tanggal_pulang')->nullable();
-            $table->unsignedBigInteger('id_kendaraan');
+            $table->unsignedBigInteger('id_maskapai');
             $table->unsignedBigInteger('id_jurusan');
             $table->unsignedBigInteger('id_kategori');
             $table->string('harga_tiket');

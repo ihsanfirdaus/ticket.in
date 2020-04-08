@@ -30,7 +30,9 @@
             <thead class="thead-primary">
               <tr>
                 <th>Keberangkatan</th>
+                <th>Bandara Keberangkatan</th>
                 <th>Tujuan</th>
+                <th>Bandara Tujuan</th>
                 <th>Waktu</th>
                 <th></th>
               </tr>

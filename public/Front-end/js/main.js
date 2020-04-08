@@ -123,7 +123,28 @@ $(document).ready(function() {
                 $("#anak").prop('disabled', false);
             }
         })
-    })
+    });
+
+    // var myUpload = new FileUploadWithPreview('myUploader', {
+    //     showDeleteButtonOnImages: true,
+    //     text: {
+    //         chooseFile: 'Choose File ...',
+    //         browse: 'Browse',
+    //         selectedCount: 'files selected'
+    //     },
+    //     maxFileCount: 0,
+    //     images: {
+    //         baseImage: '',
+    //         backgroundImage: '',
+    //         successFileAltImage: '',
+    //         successPdfImage: '',
+    //         successVideoImage: ''
+    //     },
+    //     presetFiles: []
+    // });
+
+
+    
 
     // -------   Mail Send ajax
 
@@ -318,26 +339,6 @@ $(document).ready(function() {
         // Return `null` if the term should not be displayed
         return null;
     }
-    $("#keberangkatan").select2({
-        // width: null,
-        // containerCssClass: ':all:',
-        matcher: matchStart
-    });
-    $("#tujuan").select2({
-        // width: null,
-        // containerCssClass: ':all:',
-        matcher: matchStart
-    });
-    $("#single-select-bus").select2({
-        // width: null,
-        // containerCssClass: ':all:',
-        matcher: matchStart
-    });
-    $("#single-select-bus2").select2({
-        // width: null,
-        // containerCssClass: ':all:',
-        matcher: matchStart
-    });
 
     $(document).ready(function() {
         var today = new Date(
@@ -346,26 +347,26 @@ $(document).ready(function() {
             new Date().getDate()
         );
 
-        $(".startDateBus").datepicker({
-            uiLibrary: "bootstrap4",
-            iconsLibrary: "fontawesome",
-            format: "dd-mm-yyyy",
-            minDate: today
-        });
+        // $(".startDateBus").datepicker({
+        //     uiLibrary: "bootstrap4",
+        //     iconsLibrary: "fontawesome",
+        //     format: "dd-mm-yyyy",
+        //     minDate: today
+        // });
 
         $(".startDateFlight").datepicker({
             uiLibrary: "bootstrap4",
             iconsLibrary: "fontawesome",
-            format: "dd-mm-yyyy",
+            format: "yyyy-mm-dd",
             minDate: today,
             maxDate: function() {
                 return $(".endDateFlight").val();
             }
         });
         $(".endDateFlight").datepicker({
-            format: "dd-mm-yyyy",
             uiLibrary: "bootstrap4",
             iconsLibrary: "fontawesome",
+            format: "yyyy-mm-dd",
             minDate: function() {
                 return $(".startDateFlight").val();
             }
@@ -374,6 +375,20 @@ $(document).ready(function() {
 
     // bootstrapValidate('#keberangkatan','required:Please choose one date of departure below')
     // bootstrapValidate('#dewasa','required:Please fill out this field with number')
+
+    // UBAH PENCARIAN
+    $("#btn_pencarian").click(function() {
+        $("#ubah_pencarian").show();
+        $("#detail_pencarian").hide();
+        $("#btn_pencarian").hide();
+        $("#btn_cancel").show();
+    });
+    $("#btn_cancel").click(function() {
+        $("#ubah_pencarian").hide();
+        $("#detail_pencarian").show();
+        $("#btn_pencarian").show();
+        $("#btn_cancel").hide();
+    })
 
     // PESAN TIKET
     $("#btn_fasilitas").click(function() {
@@ -391,39 +406,39 @@ $(document).ready(function() {
 
     // PEMESANAN
 
-            $("#next").click(function() {
-                $("#pemesan").hide();
-                $("#penumpang").show();
-                $("#next").hide();
-                $("#prev").show();
-                $("#save").show();
-            });
-            $("#prev").click(function() {
-                $("#pemesan").show();
-                $("#penumpang").hide();
-                $("#prev").hide();
-                $("#next").show();
-                $("#save").hide();
-            })
+    $("#next").click(function() {
+        $("#pemesan").hide();
+        $("#penumpang").show();
+        $("#next").hide();
+        $("#prev").show();
+        $("#save").show();
+    });
+    $("#prev").click(function() {
+        $("#pemesan").show();
+        $("#penumpang").hide();
+        $("#prev").hide();
+        $("#next").show();
+        $("#save").hide();
+    })
 
-            $("#ch_indomaret").click(function() {
-                $("#bca").hide();
-                $("#bri").hide();
-                $("#indomaret").show();
-                $("#detail").hide();
-            });
-            $("#ch_bri").click(function() {
-                $("#bca").hide();
-                $("#indomaret").hide();
-                $("#bri").show();
-                $("#detail").hide();
-            });
-            $("#ch_bca").click(function() {
-                $("#bri").hide();
-                $("#indomaret").hide();
-                $("#bca").show();
-                $("#detail").hide();
-            });
-
+    $("#ch_indomaret").click(function() {
+        $("#bca").hide();
+        $("#bri").hide();
+        $("#indomaret").show();
+        $("#detail").hide();
+    });
+    $("#ch_bri").click(function() {
+        $("#bca").hide();
+        $("#indomaret").hide();
+        $("#bri").show();
+        $("#detail").hide();
+    });
+    $("#ch_bca").click(function() {
+        $("#bri").hide();
+        $("#indomaret").hide();
+        $("#bca").show();
+        $("#detail").hide();
+    });
 
 });
+

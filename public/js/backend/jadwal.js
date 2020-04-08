@@ -2,6 +2,7 @@ $(document).ready(function() {
     $("input:radio").click(function() {
         if ($(this).attr("id") == "sekali_jalan") {
             $("#tanggal_pulang").prop("disabled", true);
+            $("#tanggal_pulang").val("");
         } else {
             $("#tanggal_pulang").prop("disabled", false);
         }
@@ -68,14 +69,16 @@ $(document).ready(function() {
             processing: '<div class="lds-dual-ring"></div>'
         },
         serverSide: true,
+        ajax: {
+            url: +"admin/jadwal"
+        },
         lengthMenu: [
             [5, 10, 25, 50],
             [5, 10, 25, 50, "All"] //Set Menu Page Length
         ],
-        ajax: {
-            url: +"admin/jadwal"
-        },
+        order: ["0",'desc'],
         columns: [
+            { data: "maskapai", name: "maskapai"},
             { data: "tanggal_berangkat", name: "tanggal_berangkat" },
             { data: "tanggal_pulang", name: "tanggal_pulang" },
             { data: "jurusan", name: "jurusan" },
@@ -123,7 +126,7 @@ $(document).ready(function() {
                 var tanggal_berangkat = $("#tanggal_berangkat").val();
                 var tipe_tiket = $("#tipe_tiket").val();
                 var id_kategori = $("#id_kategori").val();
-                var id_kendaraan = $("#id_kendaraan").val();
+                var id_maskapai = $("#id_maskapai").val();
                 var id_jurusan = $("#id_jurusan").val();
                 var harga_tiket = $("#harga_tiket").val();
 
@@ -131,7 +134,7 @@ $(document).ready(function() {
                     tanggal_berangkat == "" ||
                     tipe_tiket == "" ||
                     id_kategori == "" ||
-                    id_kendaraan == "" ||
+                    id_maskapai == "" ||
                     id_jurusan == "" ||
                     harga_tiket == ""
                 ) {

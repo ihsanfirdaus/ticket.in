@@ -17,13 +17,15 @@
 Route::group(['prefix' => '/'], function () {
     Route::get('/','Frontend\FrontendController@home');
     Route::group(['prefix' => '/','middleware' => 'auth'], function() {
-        Route::get('info-tiket-pesawat','Frontend\FrontendController@info_tiket_pesawat');
-        Route::get('info-tiket-bus','Frontend\FrontendController@info_tiket_bus');
-        Route::get('pesan-tiket/isi-data','Frontend\FrontendController@isi_data');
-        Route::get('pesan-tiket/review-pemesanan','Frontend\FrontendController@review_pemesanan');
-        Route::get('pesan-tiket/metode-pembayaran','Frontend\FrontendController@metode_pembayaran');
-        Route::get('pesan-tiket/konfirmasi-pembayaran-indomaret','Frontend\FrontendController@k_pembayaran_in');
-
+        Route::get('info-tiket-pesawat','Frontend\FrontendController@info_tiket_pesawat')->name('cari_tiket');
+        // Route::get('info-tiket-bus','Frontend\FrontendController@info_tiket_bus');
+        Route::get('isi-data/{kode_jadwal}','Frontend\FrontendController@isi_data');
+        Route::get('review-pemesanan','Frontend\FrontendController@review_pemesanan');
+        Route::get('metode-pembayaran','Frontend\FrontendController@metode_pembayaran');
+        Route::get('konfirmasi-pembayaran-indomaret','Frontend\FrontendController@k_pembayaran_in');
+        Route::get('konfirmasi-pembayaran-bri','Frontend\FrontendController@k_pembayaran_bri');
+        Route::get('konfirmasi-pembayaran-bca','Frontend\FrontendController@k_pembayaran_bca');
+        Route::get('cetak-tiket','Frontend\FrontendController@cetak');
     });
 });
 
@@ -44,19 +46,19 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
             'as'   => 'user.destroy',
         ]);
     });
-    // KENDARAAN GROUP
-    Route::group(['prefix' => 'kendaraan'], function () {
-        Route::get('/','Backend\KendaraanController@index');
+    // MASKAPAI GROUP
+    Route::group(['prefix' => 'maskapai'], function () {
+        Route::get('/','Backend\MaskapaiController@index');
         Route::post('save',[
-            'uses' => 'Backend\KendaraanController@store',
-            'as' => 'kendaraan.store'
+            'uses' => 'Backend\MaskapaiController@store',
+            'as' => 'maskapai.store'
         ]);
         Route::get('delete/{id}', [
-            'uses' => 'Backend\KendaraanController@destroy',
-            'as'   => 'kendaraan.destroy',
+            'uses' => 'Backend\MaskapaiController@destroy',
+            'as'   => 'maskapai.destroy',
         ]);
     });
-    Route::resource('kendaraan', 'Backend\KendaraanController');
+    Route::resource('maskapai', 'Backend\MaskapaiController');
     // JURUSAN GROUP
     Route::group(['prefix' => 'jurusan'], function () {
         Route::get('/','Backend\JurusanController@index');
@@ -83,6 +85,10 @@ Route::group(['prefix' => 'admin', 'middleware' => 'admin'], function () {
         ]);
     });
     Route::resource('jadwal', 'Backend\JadwalController');
+    // PEMESANAN GROUP
+    Route::group(['prefix' => 'pemesanan'], function () {
+        Route::get('/','Backend\PemesananController@index');
+    });
 });
 
 Auth::routes();
